@@ -10,12 +10,10 @@ class TgBot:
 @dataclass
 class Config:
     tg_bot: TgBot
+    db_url: str
 
 
 def load_config(path: str | None = None):
     env = Env()
     env.read_env(path)
-    return Config(tg_bot=TgBot(token=env("BOT_TOKEN")))
-
-
-print(load_config().tg_bot.token)
+    return Config(tg_bot=TgBot(token=env("BOT_TOKEN")), db_url=env("DB_URL"))

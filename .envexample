@@ -1,0 +1,2 @@
+BOT_TOKEN=BOT TOKEN HERE
+DB_URL=postgresql+asyncpg://user:password@host:port/dbname
