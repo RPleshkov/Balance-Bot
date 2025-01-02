@@ -42,6 +42,10 @@ async def upsert_user(
 
 
 async def set_income_category(session, tg_id, name):
-    user = await session.scalar(select(User).where(User.tg_id == tg_id))
-    session.add(Category(user_id=user.id, name=name, type=CategoryType.income))
+    session.add(Category(user_id=tg_id, name=name, type=CategoryType.income))
+    await session.commit()
+
+
+async def set_expensive_category(session, tg_id, name):
+    session.add(Category(user_id=tg_id, name=name, type=CategoryType.expense))
     await session.commit()

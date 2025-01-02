@@ -1,13 +1,13 @@
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
-def inc_exp_kb():
-    incom_category_button = InlineKeyboardButton(
-        text="Доходы", callback_data="incom_category"
+def start_settings_kb():
+    button = InlineKeyboardButton(
+        text="Приступить к настройке", callback_data="start_settings"
     )
-    expensive_category_button = InlineKeyboardButton(
-        text="Расходы", callback_data="expensive_category"
-    )
-    return InlineKeyboardMarkup(
-        inline_keyboard=[[incom_category_button, expensive_category_button]]
-    )
+    return InlineKeyboardMarkup(inline_keyboard=[[button]])
+
+
+def balance_settings_kb():
+    button = InlineKeyboardButton(text="Далее", callback_data="balance_next_btn")
+    return InlineKeyboardMarkup(inline_keyboard=[[button]])
