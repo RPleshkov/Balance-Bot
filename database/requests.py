@@ -1,8 +1,9 @@
 import logging
 
-from sqlalchemy import select
+from sqlalchemy import select, text
 from sqlalchemy.dialects.postgresql import insert as upsert
 from sqlalchemy.ext.asyncio import AsyncSession
+from test.test_calendar import result_2004_html
 
 from database.models import Category, CategoryType, User
 
@@ -49,3 +50,16 @@ async def set_income_category(session, tg_id, name):
 async def set_expensive_category(session, tg_id, name):
     session.add(Category(user_id=tg_id, name=name, type=CategoryType.expense))
     await session.commit()
+
+
+async def get_income_categories(session, tg_id):
+    stmt = text(
+        f"SELECT name, id FROM categories WHERE user_id = {tg_id} AND type = 'income'"
+    )
+    result = await session.execute(stmt)
+    return result
+
+
+async def delete_income_category(session, tg_id, id):
+    stmt = text(f"DELETE FROM categories WHERE user_id = {tg_id} AND id = {id}")
+    await session.execute(stmt)
