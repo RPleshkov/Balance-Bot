@@ -1,10 +1,11 @@
 import asyncio
 import logging
-from aiogram import Bot, Dispatcher
-from config.config import load_config, Config
-from handlers import user_handlers
-from database.models import async_main
 
+from aiogram import Bot, Dispatcher
+
+from config.config import Config, load_config
+from database.models import async_main
+from handlers import user_handlers
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)

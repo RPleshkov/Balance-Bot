@@ -1,8 +1,8 @@
-from database.models import async_session
-from database.models import User, Category, CategoryType
-from sqlalchemy import select
 import logging
 
+from sqlalchemy import select
+
+from database.models import Category, CategoryType, User, async_session
 
 logger = logging.getLogger(__name__)
 

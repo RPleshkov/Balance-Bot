@@ -1,13 +1,13 @@
 from aiogram import F, Router
 from aiogram.filters import Command, CommandStart, StateFilter
-from aiogram.types import CallbackQuery, Message
-from lexicon.lexicon import LEXICON_RU
-import database.requests as rq
-from keyboards.settings_keyboard import inc_exp_kb
-from fsm.states import FSMChoiceCategory
-from aiogram.fsm.state import default_state
 from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import default_state
+from aiogram.types import CallbackQuery, Message
 
+import database.requests as rq
+from fsm.states import FSMChoiceCategory
+from keyboards.settings_keyboard import inc_exp_kb
+from lexicon.lexicon import LEXICON_RU
 
 router = Router()
 

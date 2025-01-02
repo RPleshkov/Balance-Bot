@@ -1,10 +1,12 @@
-from sqlalchemy import ForeignKey
-from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
-from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
-from sqlalchemy.types import BigInteger
-from config.config import load_config
 from enum import Enum
 
+from sqlalchemy import ForeignKey
+from sqlalchemy.ext.asyncio import (AsyncAttrs, async_sessionmaker,
+                                    create_async_engine)
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.types import BigInteger
+
+from config.config import load_config
 
 engine = create_async_engine(load_config().db_url)
 async_session = async_sessionmaker(engine)
