@@ -17,15 +17,15 @@ class CategoryType(Enum):
 class User(Base):
     __tablename__ = "users"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
-    tg_id = mapped_column(BigInteger)
-    name: Mapped[str] = mapped_column()
+    tg_id = mapped_column(BigInteger, primary_key=True)
+    first_name: Mapped[str] = mapped_column()
+    last_name: Mapped[str] = mapped_column()
 
 
 class Category(Base):
     __tablename__ = "categories"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.tg_id"))
     name: Mapped[str] = mapped_column()
     type: Mapped[CategoryType]

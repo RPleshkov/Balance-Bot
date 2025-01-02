@@ -15,7 +15,12 @@ router = Router()
 
 @router.message(CommandStart(), StateFilter(default_state))
 async def command_start_process(message: Message, session: AsyncSession):
-    await rq.set_user(session, message.from_user.id, message.from_user.first_name)
+    await rq.upsert_user(
+        session,
+        message.from_user.id,
+        message.from_user.first_name,
+        message.from_user.last_name,
+    )
     await message.answer(
         text=f'{message.from_user.first_name}, добро пожаловать в Balance Bot!\n\n{LEXICON_RU["/start"]}'
     )
