@@ -16,14 +16,7 @@ async def upsert_user(
     first_name: str,
     last_name: str | None = None,
 ):
-    """
-    Добавление или обновление пользователя
-    в таблице users
-    :param session: сессия СУБД
-    :param telegram_id: айди пользователя
-    :param first_name: имя пользователя
-    :param last_name: фамилия пользователя
-    """
+
     stmt = upsert(User).values(
         {
             "tg_id": tg_id,
@@ -60,6 +53,7 @@ async def get_income_categories(session, tg_id):
     return result
 
 
-async def delete_income_category(session, tg_id, id):
-    stmt = text(f"DELETE FROM categories WHERE user_id = {tg_id} AND id = {id}")
+async def delete_income_category(session, id):
+    stmt = text(f"DELETE FROM categories WHERE id = {id}")
     await session.execute(stmt)
+    await session.commit()
